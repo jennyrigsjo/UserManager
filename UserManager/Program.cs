@@ -13,10 +13,17 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 // Configure Microsoft Account Authentication
-builder.Services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+builder.Services.AddAuthentication()
+.AddMicrosoftAccount(microsoftOptions =>
 {
     microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
     microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+})
+// Configure Google Authentication
+.AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 });
 
 
